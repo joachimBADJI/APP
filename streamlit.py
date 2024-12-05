@@ -3,11 +3,14 @@ import pandas as pd
 import geopandas as gpd
 import folium as fl
 from streamlit_folium import st_folium
+# define layout page and name of this
 st.set_page_config(layout="wide",page_title='Visualise le monde')
 tb=gpd.read_file("https://raw.githubusercontent.com/tommyscodebase/12_Days_Geospatial_Python_Bootcamp/refs/heads/main/13_final_project_data/world.geojson")
 dt=pd.read_csv("https://raw.githubusercontent.com/tommyscodebase/12_Days_Geospatial_Python_Bootcamp/main/13_final_project_data/world_population.csv")
+# link sellectbox and data of my two files
 done=dt[dt['Country/Territory'].isin(tb['name'])]['Country/Territory'].unique()
 sele = st.selectbox('# **Sélectionne un pays**', options=done)
+#divide page on 2 columns
 col1, col2 = st.columns([1, 1])
 with col1:    
     an=['2022 Population','2020 Population','2015 Population','2010 Population','2000 Population','1990 Population','1980 Population','1970 Population']
